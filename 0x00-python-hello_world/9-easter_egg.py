@@ -1,2 +1,2 @@
 #!/usr/bin/python3
-import this
+print(*(__import__('this').d.get(k) for k in __import__('this').d), sep='\n')
