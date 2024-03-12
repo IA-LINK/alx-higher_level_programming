@@ -1,28 +1,31 @@
 #include "lists.h"
 
 /**
- * check_cycle - checks if a singly linked list has a cycle in it
- * list - linked list
- *
- * Return: 0 if cycle, 1 if no cycle
+ * check_cycle - Function to check if there is cycle in list
+ * @list: linked list to check
+ * Return: 1 if the list has a cycle, 0 if it doesn't
  */
 
 int check_cycle(listint_t *list)
 {
-	listint_t *tortoise, *hare;
+	listint_t *hare = list;
+	listint_t *tortoise = list;
 
-	tortoise = list;
-	hare = list;
+	if (!list)
+		return (0);
 
-	while (tortoise && hare)
+	while (1)
 	{
-		if (hare->next == NULL)
-			return (0);
-		tortoise = tortoise->next;
-		hare = hare->next->next;
-		if (tortoise == hare)
-			return (1);
-	}
+		if (hare->next != NULL && hare->next->next != NULL)
+		{
+			hare = hare->next->next;
+			tortoise = tortoise->next;
 
-	return (0);
-}i
+			/* Circle is found if nodes match*/
+			if (hare == tortoise)
+				return (1);
+		}
+		else
+			return (0);
+	}
+}
