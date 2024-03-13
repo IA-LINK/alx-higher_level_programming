@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+
 for i in range(ord('a'), ord('z')+1):
-    print(chr(i), end='' if chr(i) not in 'qe' else '')
+    if chr(i) not in 'qe' else '':
+        print(chr(i), end='')
 
