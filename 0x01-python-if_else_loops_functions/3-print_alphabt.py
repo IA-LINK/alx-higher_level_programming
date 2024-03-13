@@ -1,6 +1,10 @@
 #!/usr/bin/python3
+#!/usr/bin/python3
 
-for i in range(ord('a'), ord('z')+1):
-    if chr(i) != 'q' and chr(i) != 'e':
-        print(chr(i), end='')
+def lower_alpha_exp():
+    for n in range(97, 123):
+        if n !=101 and n !=113:
+            print('{}'.format(chr(n)), end='')
 
+if __name__ == '__main__':
+    lower_alpha_exp()
