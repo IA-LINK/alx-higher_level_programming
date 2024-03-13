@@ -1,8 +1,10 @@
 #!/usr/bin/python3
-for i in range(0, 26):
-    c = ord('z') - i
-    if i % 2 == 1:
-        c = (chr(c - ord('a') + ord('A')))
+
+
+nc = 0
+for n in range(122, 96, -1):
+    if n % 2 == 0:
+        nc = n
     else:
-        c = chr(c)
-    print("{}".format(c), end='')
+        nc = n - 32
+    print("{}".format(chr(nc)), end='')
