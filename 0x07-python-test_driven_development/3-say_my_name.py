@@ -1,18 +1,28 @@
 #!/usr/bin/python3
-"""Defines a name-printing function."""
+
+""" say_my_name
+
+Prints My name is `first_name` `last_name`
+If either argument is not a string it raises TypeError
+"""
 
 
 def say_my_name(first_name, last_name=""):
-    """Print a name.
+    """ add_integer - prints first and last name
 
-    Args:
-        first_name (str): The first name to print.
-        last_name (str): The last name to print.
-    Raises:
-        TypeError: If either of first_name or last_name are not strings.
     """
     if not isinstance(first_name, str):
         raise TypeError("first_name must be a string")
     if not isinstance(last_name, str):
         raise TypeError("last_name must be a string")
-    print("My name is {} {}".format(first_name, last_name))
+    print('My name is {:s} {:s}'.format(first_name, last_name))
+
+
+if __name__ == '__main__':
+    say_my_name("John", "Smith")
+    say_my_name("Walter", "White")
+    say_my_name("Bob")
+    try:
+        say_my_name("Bob", 12)
+    except Exception as e:
+        print(e)
