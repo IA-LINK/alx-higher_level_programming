@@ -1,79 +1,93 @@
-# Setup: Import the module and function
->>> mod = __import__("4-print_square")
->>> print_square = mod.print_square
 
-# Function Documentation
->>> len(mod.__doc__) > 1
-True
+============================
+How to Use 4-print_square.py
+============================
 
-# Function Documentation
->>> len(print_square.__doc__) > 1
-True
+This module defines a square-printing function ``print_square(size)``.
 
-# Test Cases
+Usage
+=====
 
-# Valid input: size is a positive integer
->>> size = 5
->>> print_square(size)
-#####
-#####
-#####
-#####
-#####
+Squares are printed using the ``#`` character. The parameter ``size``
+represents the height and width of the square.
 
-# Valid input: semi-large number?🤔
->>> size = 25
->>> print_square(size)
-#########################
-#########################
-#########################
-#########################
-#########################
-#########################
-#########################
-#########################
-#########################
-#########################
-#########################
-#########################
-#########################
-#########################
-#########################
-#########################
-#########################
-#########################
-#########################
-#########################
-#########################
-#########################
-#########################
-#########################
-#########################
+::
 
-# Valid input: size is zero (edge case)
->>> size = 0
->>> print_square(size)
+    >>> print_square = __import__('4-print_square').print_square
+    >>> print_square(1)
+    #
 
- 
-# Invalid input: size is not an integer (invalid)
->>> size = "not_an_integer"
->>> print_square(size)
-Traceback (most recent call last):
-    ...
-TypeError: size must be an integer
+::
 
-# Invalid input: size is a negative integer (invalid)
->>> size = -5
->>> print_square(size)
-Traceback (most recent call last):
-    ...
-ValueError: size must be >= 0
+    >>> print_square(4)
+    ####
+    ####
+    ####
+    ####
 
-# Invalid input: size is a negative float (invalid)
->>> size = -5.5
->>> print_square(size)
-Traceback (most recent call last):
-    ...
-TypeError: size must be an integer
+::
 
-# run test case file with `python3 -m doctest -v ./tests/4-print_square.txt`tests/4-print_square.txt
+    >>> print_square(10)
+    ##########
+    ##########
+    ##########
+    ##########
+    ##########
+    ##########
+    ##########
+    ##########
+    ##########
+    ##########
+
+If ``size`` is zero, the function prints nothing.
+
+::
+
+    >>> print_square(0)
+
+Invalid Sizes
+=============
+
+The parameter ``size`` must be an integer. Otherwise, a TypeError is raised.
+
+::
+
+    >>> print_square("not an int")
+    Traceback (most recent call last):
+    TypeError: size must be an integer
+
+::
+
+    >>> print_square(5.5)
+    Traceback (most recent call last):
+    TypeError: size must be an integer
+
+::
+
+    >>> print_square(None)
+    Traceback (most recent call last):
+    TypeError: size must be an integer
+
+If ``size`` is less than zero, a ValueError is raised.
+
+::
+
+    >>> print_square(-7)
+    Traceback (most recent call last):
+    ValueError: size must be >= 0
+
+Note that type-checking occurs before value-checking.
+
+::
+
+    >>> print_square(-7.5)
+    Traceback (most recent call last):
+    TypeError: size must be an integer
+
+At least one argument must be provided.
+
+::
+
+    >>> print_square()
+    Traceback (most recent call last):
+    TypeError: print_square() missing 1 required positional argument: 'size'
