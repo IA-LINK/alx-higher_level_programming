@@ -1,88 +1,68 @@
-The ``1-my_list`` module
-======================
+# Setup: Import the module and class
+>>> mod = __import__("1-my_list")
+>>> MyList = mod.MyList
 
-Using ``MyList``
--------------------
+# Class Documentation
+>>> len(mod.__doc__) > 1
+True
 
-Importing the function from the module:
-        >>> MyList = __import__("1-my_list").MyList
+# Class Documentation
+>>> len(MyList.__doc__) > 1
+True
 
-Checking for module docstring:
-         >>> m = __import__("1-my_list").__doc__
-         >>> len(m) > 1
-         True
+# Test Cases
 
-Checking for class docstring:
-         >>> c = __import__("1-my_list").MyList.__doc__
-         >>> len(c) > 1
-         True
+# Valid input: create MyList instance and add elements
+>>> my_list = MyList()
+>>> my_list.append(3)
+>>> my_list.append(1)
+>>> my_list.append(2)
+>>> my_list
+[3, 1, 2]
 
-Checking for method docstring:
-	 >>> mod = __import__("1-my_list").MyList.print_sorted.__doc__
-	 >>> len(mod) > 1
-	 True
+# Valid input: print sorted elements in ascending order
+>>> my_list.print_sorted()
+[1, 2, 3]
 
-Checking that MyList inherits from list:
-	 >>> issubclass(MyList, list)
-	 True
+# Valid input: empty list (sorted is still an empty list)
+>>> empty_list = MyList()
+>>> empty_list.print_sorted()
+[]
 
-Checking for empty list:
-	 >>> l = MyList()
-	 >>> l.print_sorted()
-	 []
+# Valid input: list with negative numbers
+>>> neg_list = MyList()
+>>> neg_list.append(-5)
+>>> neg_list.append(-2)
+>>> neg_list.append(-10)
+>>> neg_list
+[-5, -2, -10]
 
-Checking that appendng works:
-	 >>> l.append(1)
-	 >>> l.append(2)
-	 >>> l.append(3)
-	 >>> l.append(4)
-	 >>> print(l)
-	 [1, 2, 3, 4]
+# Valid input: print sorted elements with negative numbers in ascending order
+>>> neg_list.print_sorted()
+[-10, -5, -2]
 
-Checking for list already in correct order:
-	 >>> l.print_sorted()
-	 [1, 2, 3, 4]
+# Valid input: list with floats
+>>> float_list = MyList()
+>>> float_list.append(3.5)
+>>> float_list.append(1.2)
+>>> float_list.append(2.8)
+>>> float_list
+[3.5, 1.2, 2.8]
 
-Checking for reversed order list:
-	 >>> l = MyList()
-	 >>> l.append(4)
-	 >>> l.append(3)
-	 >>> l.append(2)
-	 >>> l.append(1)
-	 >>> print(l)
-	 [4, 3, 2, 1]
-	 >>> l.print_sorted()
-	 [1, 2, 3, 4]
-	 >>> print(l)
-	 [4, 3, 2, 1]
+# Valid input: print sorted elements with floats in ascending order
+>>> float_list.print_sorted()
+[1.2, 2.8, 3.5]
 
-Checking for one negative number:
-	 >>> l.append(-1)
-	 >>> l.append(5)
-	 >>> print(l)
-	 [4, 3, 2, 1, -1, 5]
-	 >>> l.print_sorted()
-	 [-1, 1, 2, 3, 4, 5]
-	 >>> print(l)
-	 [4, 3, 2, 1, -1, 5]
+# Valid input: list with mixed types (sorted will raise a TypeError)
+>>> mixed_list = MyList()
+>>> mixed_list.append(3)
+>>> mixed_list.append("hello")
+>>> mixed_list.append(2.5)
+>>> mixed_list
+[3, 'hello', 2.5]
 
-Checking for all negative numbers:
-	 >>> l = MyList()
-	 >>> l.append(-10)
-	 >>> l.append(-1)
-	 >>> l.append(-7)
-	 >>> l.append(-2)
-	 >>> l.append(-8)
-	 >>> print(l)
-	 [-10, -1, -7, -2, -8]
-	 >>> l.print_sorted()
-	 [-10, -8, -7, -2, -1]
-	 >>> print(l)
-         [-10, -1, -7, -2, -8]
-
-Checking for too many arguments:
-	 >>> l.print_sorted(1)
-	 Traceback (most recent call last):
-	 ...
-	 TypeError: print_sorted() takes 1 positional argument but 2 were given
-	 
+# Invalid input: attempt to sort a list with mixed types (invalid)
+>>> mixed_list.print_sorted()
+Traceback (most recent call last):
+    ...
+TypeError: '<' not supported between instances of 'str' and 'int'

@@ -1,7 +1,14 @@
 #!/usr/bin/python3
-"""This program return a list withh the methods of the obj"""
+
+"""
+Lookup object Module.
+Creates a function with the prototype lookup(obj).
+"""
 
 
 def lookup(obj):
-    """Gets the methods of the obj"""
+    """
+    Funcion that returns list of available attributes
+    and methods of an object.
+    """
     return dir(obj)

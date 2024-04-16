@@ -1,14 +1,18 @@
 #!/usr/bin/python3
-"""
-This program validate if the obj is the same with other class
-"""
 
-
+"""
+Id_same_class Module.
+Compare and return if object is exactly and instance of the specified class.
+"""
 def is_same_class(obj, a_class):
     """
-    This function validate if obj is the same class of a_clas
+    Function that compares if the object is 
+    exactly and instance of a_class
     Args:
-      - obj
-      - a_class
+        obj: object
+        a_class: class
     """
-    return type(obj) == a_class
+    if type(obj) is a_class:
+        return True
+    else:
+        return False
