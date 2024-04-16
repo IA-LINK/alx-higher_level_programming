@@ -1,7 +1,14 @@
 #!/usr/bin/python3
-"""This program return a list withh the methods of the obj"""
+
+"""The module is 1-my_list"""
 
 
-def lookup(obj):
-    """Gets the methods of the obj"""
-    return dir(obj)
+class MyList(list):
+    """A subclass of list"""
+    def __init__(self):
+        """initialize the object"""
+        super().__init__()
+
+    def print_sorted(self):
+        """prints the sorted list"""
+        print(sorted(self))
