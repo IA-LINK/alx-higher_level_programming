@@ -1,17 +1,15 @@
 #!/usr/bin/node
 
-const { dict } = require('./101-data');
+const dict = require('./101-data').dict;
 
-const occurrencesDict = {};
+const newDict = {};
 
 for (const userId in dict) {
-  const occurrences = dict[userId];
-
-  if (occurrences in occurrencesDict) {
-    occurrencesDict[occurrences].push(userId);
-  } else {
-    occurrencesDict[occurrences] = [userId];
+  const occurrence = dict[userId];
+  if (!(occurrence in newDict)) {
+    newDict[occurrence] = [];
   }
+  newDict[occurrence].push(userId);
 }
 
-console.log(occurrencesDict);
+console.log(newDict);

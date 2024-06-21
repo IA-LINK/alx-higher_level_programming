@@ -1,20 +1,12 @@
 #!/usr/bin/node
 
-const fs = require('fs');
+const fs = require('fs').promises;
+const { argv } = require('process');
 
-if (process.argv.length !== 5) {
-  console.error('Usage: ./102-concat.js fileA fileB fileC');
-  process.exit(1);
-}
+fs.readFile(argv[2], 'utf8')
+  .then(data => fs.writeFile(argv[4], data, 'utf8'))
+  .catch(err => console.error(err));
 
-const [, , fileA, fileB, fileC] = process.argv;
-
-try {
-  const dataA = fs.readFileSync(fileA, 'utf8');
-  const dataB = fs.readFileSync(fileB, 'utf8');
-  const concatenatedData = `${dataA}${dataB}`;
-  fs.writeFileSync(fileC, concatenatedData);
-} catch (error) {
-  console.error(`Error: ${error.message}`);
-  process.exit(1);
-}
+fs.readFile(argv[3], 'utf8')
+  .then(data => fs.writeFile(argv[4], data, { flag: 'a' }, 'utf8'))
+  .catch(err => console.error(err));
