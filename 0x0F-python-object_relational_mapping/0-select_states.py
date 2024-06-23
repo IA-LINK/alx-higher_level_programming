@@ -1,25 +1,50 @@
 #!/usr/bin/python3
-"""Lists all states from the database hbtn_0e_0_usa"""
+"""
+a script that lists all states from the database hbtn_0e_0_usa:
+script should take 3 arguments: mysql username,
+mysql password and database name (no argument validation needed)
+must use the module MySQLdb (import MySQLdb)
+script should connect to a MySQL server running on localhost at port 3306
+Results must be sorted in ascending order by states.id
+Results must be displayed as they are in the example below
+code should not be executed when imported
+"""
 
-if __name__ == '__main__':
-    from sys import argv
-    import MySQLdb as mysql
+import MySQLdb as mysql
+from sys import argv
 
-    try:
-        db = mysql.connect(host='localhost', port=3306, user=argv[1],
-                           passwd=argv[2], db=argv[3])
-    except Exception:
-        print('Failed to connect to the database')
-        exit(0)
 
-    cursor = db.cursor()
+def connection(connect, username, password, database, prt):
+    """
+        lists all row in states table
+        connect:port,
+        username: username of the user,
+        password: password of the database,
+        database: the database to use,
+        prt: port to connect.
+    """
+    mydb = mysql.connect(
+        host=connect,
+        user=username,
+        passwd=password,
+        db=database,
+        port=prt
+    )
 
-    cursor.execute("SELECT * FROM states ORDER BY id ASC;")
+    # create cursor
+    cursor = mydb.cursor()
 
-    result_query = cursor.fetchall()
+    cursor.execute('SELECT * FROM states ORDER BY id')
 
-    for row in result_query:
+    rows = cursor.fetchall()
+    for row in rows:
         print(row)
 
+    # close connections
     cursor.close()
-    db.close()
+    return mydb
+
+
+if __name__ == '__main__':
+    mydbase = connection('localhost', argv[1], argv[2], argv[3], 3306)
+    mydbase.close()
